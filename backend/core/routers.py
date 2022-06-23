@@ -9,8 +9,8 @@ from genre.views import GenreViewSet
 
 router = DefaultRouter()
  
-router.register('artist', ArtistViewSet)
-router.register('album', AlbumViewSet)
-router.register('genre', GenreViewSet)
-router.register('playlist', PlaylistViewSet)
+router.register('artists', ArtistViewSet)
+router.register('albums', AlbumViewSet)
+router.register('genres', GenreViewSet)
+router.register('playlists', PlaylistViewSet)
 router.register('tracks', TrackViewSet)
