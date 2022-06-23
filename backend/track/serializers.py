@@ -1,4 +1,3 @@
-from dataclasses import field
 from rest_framework import serializers
 from track.models import Track
 from artist.models import Artist
