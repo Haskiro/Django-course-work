@@ -6,7 +6,7 @@ class ArtistSerializerForTrack(serializers.ModelSerializer):
     class Meta:
         model = Artist
         # fields = '__all__'
-        fields = ['id']
+        fields = ['id', 'nickname']
 
 class TrackSerializer(serializers.ModelSerializer):
     artists_data = ArtistSerializerForTrack(source='artist', many=True)
