@@ -6,8 +6,8 @@
         <nav class="header__nav nav">
           <ul class="nav__list">
             <li class="nav__item"><router-link to="/">Главная</router-link></li>
-            <li class="nav__item"><router-link :to="{name: 'TrackList', params: {tracks: tracks}}">Треки</router-link></li>
-            <li class="nav__item"><router-link :to="{name: 'ArtistList', params: {artists: artists}}">Исполнители</router-link></li>
+            <li class="nav__item"><router-link :to="{name: 'TrackList', params: {}}">Треки</router-link></li>
+            <li class="nav__item"><router-link :to="{name: 'ArtistList', params: {}}">Исполнители</router-link></li>
             <li class="nav__item">Жанры</li>
             <li class="nav__item">Плейлисты</li>
           </ul>
@@ -46,7 +46,7 @@ export default {
   components: {
 
   },
-  created: function() {
+  mounted: function() {
     this.getTrackList().then(data => {
       this.tracks = data;
     });
@@ -64,6 +64,9 @@ export default {
         method: 'GET',
       });
       return response.json();
+    },
+    updateTrackList: function() {
+      this.getTrackList().then(data => {this.tracks = data});
     }
   }
 }

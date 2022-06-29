@@ -1,7 +1,6 @@
 from pydoc import describe
 from tabnanny import verbose
 from django.db import models
-from django.forms import CharField
 from artist.models import Artist
 
 # Create your models here.
