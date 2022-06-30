@@ -4,20 +4,17 @@ from rest_framework import serializers
 from artist.models import Artist
 from track.models import Track
 from album.models import Album
+from track.serializers import TrackSerializer
 
-class AlbumSetializerForArtist(serializers.ModelSerializer):
+class AlbumSerializerForArtist(serializers.ModelSerializer):
     class Meta:
         model = Album
-        fields = ['title', 'cover']
+        fields = ['id', 'title', 'cover']
 
-class TrackSerializerForArtist(serializers.ModelSerializer):
-    class Meta:
-        model = Track
-        fields = ['audio_file', 'cover']
 
 class ArtistSerializer(serializers.ModelSerializer):
-    tracks_data = TrackSerializerForArtist(source='tracks', many=True)
-    albums_data = AlbumSetializerForArtist(source='albums', many=True)
+    tracks_data = TrackSerializer(source='tracks', many=True)
+    albums_data = AlbumSerializerForArtist(source='albums', many=True)
     class Meta:
         model = Artist
         fields = '__all__'
