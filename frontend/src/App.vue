@@ -151,8 +151,8 @@ footer {
   &__body {
     display: flex;
     justify-content: space-between;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
   &__text {
     font-size: 1.4rem;

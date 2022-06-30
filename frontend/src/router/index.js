@@ -1,8 +1,9 @@
 import VueRouter from 'vue-router'
 import MainPage from '../views/MainPage'
-import TrackList from '../views/TrackList'
-import ArtistList from '../views/ArtistList'
+import TrackList from '../views/TrackListPage'
+import ArtistList from '../views/ArtistListPage'
 import ArtistDetails from '../views/ArtistDetails'
+import AlbumDetails from '../views/AlbumDetails'
 
 export default new VueRouter({
     mode: 'history',
@@ -30,6 +31,16 @@ export default new VueRouter({
             name: 'ArtistDetails',
             props: true,
 
+        },
+        {
+            path: '/albums/:id',
+            component: AlbumDetails,
+            name: 'AlbumDetails',
+            props: true,
+
         }
-    ]
+    ],
+    scrollBehavior() {
+        return { x: 0, y: 0 };
+    }
   })

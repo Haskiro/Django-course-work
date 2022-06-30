@@ -8,7 +8,7 @@
             <img class="card-tracks__img" :src="track.cover" alt="Обложка Трека">
             <div class="card-tracks__text">
               <p class="card-tracks__title">{{ track.title }}</p>
-              <p class="card-tracks__artists"><span v-for="artist in track.artists_data" :key="artist.id"><router-link :to="{path: '/artists/'+artist.id}">{{ artist.nickname }}&nbsp;</router-link></span></p>
+              <p class="card-tracks__artists"><span v-for="artist in track.artists_data" :key="artist.id"><router-link :to="{name: 'ArtistDetails', params: {id: artist.id}}">{{ artist.nickname }}&nbsp;</router-link></span></p>
             </div>
           </div>
           <audio class="card-tracks__audio" controls :src="track.audio_file"></audio>
@@ -19,37 +19,15 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-
 export default {
   name: 'TrackList',
-  data() {
-    return {
-      tracks: null,
-    }
-  },
-  components: {
-    // HelloWorld
-  },
-  methods: {
-    getTrackList: async function() {
-      const response = await fetch('http://127.0.0.1:8000/api/tracks/', {
-        method: 'GET',
-      });
-      return response.json();
-    },
-  },
-  mounted: function() {
-
-  },
-  created() {
-    this.getTrackList().then(data => {this.tracks = data});
-  }
+  props: ['tracks'],
 }
 </script>
 
-<style lang='scss' scoped>
-.tracks {
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang='scss'>
+  .tracks {
   &__heading {
     text-align: center;
     font-size: 1.4rem;
@@ -97,5 +75,4 @@ export default {
   &__audio {
   }
 }
-
 </style>

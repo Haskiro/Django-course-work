@@ -3,7 +3,7 @@
     <h1 class="artists__heading">Список исполнителей</h1>
     <ul class="artists__list">
       <li class="artists__item" v-for="artist in artists" :key="artist.id">
-        <router-link :to="{name: 'ArtistDetails', params: {id: artist.id }}" class="artists__card card-artists" @click="refreshArtistDetails(artist.id)">
+        <router-link :to="{name: 'ArtistDetails', params: {id: artist.id }}" class="artists__card card-artists">
             <img class="card-artists__img" :src="artist.photo" alt="Обложка Трека" height=250>
             <p class="card-artists__text">{{ artist.nickname }}</p>
         </router-link>
@@ -16,7 +16,7 @@
 // import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'ArtistList',
+  name: 'ArtistListPage',
   data() {
     return {
         artistDetails: {},
