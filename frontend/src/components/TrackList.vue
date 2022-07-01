@@ -8,7 +8,7 @@
             <img class="card-tracks__img" :src="track.cover" alt="Обложка Трека">
             <div class="card-tracks__text">
               <p class="card-tracks__title">{{ track.title }}</p>
-              <p class="card-tracks__artists"><span v-for="artist in track.artists_data" :key="artist.id"><router-link :to="{name: 'ArtistDetails', params: {id: artist.id}}">{{ artist.nickname }}&nbsp;</router-link></span></p>
+              <router-link v-for="artist in track.artists_data" :key="artist.id" class="card-tracks__artists" :to="{name: 'ArtistDetails', params: {id: artist.id}}" tag="span">{{ artist.nickname }}&nbsp;&nbsp;</router-link>
             </div>
           </div>
           <audio class="card-tracks__audio" controls :src="track.audio_file"></audio>
@@ -71,6 +71,10 @@ export default {
     line-height: 1.2;
   }
   &__artists {
+    cursor: pointer;
+    &:hover {
+      color: purple;
+    }
   }
   &__audio {
   }

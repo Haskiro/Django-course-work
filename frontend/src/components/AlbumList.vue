@@ -3,7 +3,7 @@
     <h1 class="album__heading">Альбомы</h1>
     <ul class="album__list">
       <li class="album__item" v-for="album in albums" :key="album.id">
-        <router-link :to="{path: '/albums/'+album.id}" class="album__card card-album">
+        <router-link :to="{path: '/albums/'+album.id}" class="album__card card-album" tag="div">
             <img class="card-album__img" :src="album.cover" alt="Обложка Альбома" height=250>
             <p class="card-album__text">{{ album.title }}</p>
         </router-link>
@@ -47,6 +47,11 @@ export default {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     padding: 10px;
     cursor: pointer;
+    transition: 0.2s ease;
+    &:hover {
+      transform: scale(1.05);
+      transition: 0.2s ease;
+    }
     &__img {
       width: 100%;
       height: 250px;

@@ -1,11 +1,11 @@
 <template>
-  <div id="artists">
-    <h1 class="artists__heading">Список исполнителей</h1>
-    <ul class="artists__list">
-      <li class="artists__item" v-for="artist in artists" :key="artist.id">
-        <router-link :to="{name: 'ArtistDetails', params: {id: artist.id }}" class="artists__card card-artists" tag="div">
-            <img class="card-artists__img" :src="artist.photo" alt="Обложка Трека" height=250>
-            <p class="card-artists__text">{{ artist.nickname }}</p>
+  <div id="playlists">
+    <h1 class="playlists__heading">Жанры</h1>
+    <ul class="playlists__list">
+      <li class="playlists__item" v-for="playlist in playlists" :key="playlist.id">
+        <router-link :to="{name: 'PlaylistDetails', params: {id: playlist.id }}" class="playlists__card card-playlists" tag="div">
+            <img class="card-playlists__img" :src="playlist.cover" alt="Обложка Трека" height=250>
+            <p class="card-playlists__text">{{ playlist.title }}</p>
         </router-link>
       </li>
     </ul>
@@ -16,24 +16,23 @@
 // import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'ArtistListPage',
+  name: 'PlaylistListPage',
   data() {
     return {
-        artistDetails: {},
-        artists: null,
+        playlists: null,
     }
   },
   mounted() {
   },
   created() {
-    this.getArtistList().then(data => {this.artists = data});
+    this.getPlaylistList().then(data => {this.playlists = data});
   },
   components: {
     // HelloWorld
   },
   methods: {
-    getArtistList: async function() {
-      const response = await fetch('http://127.0.0.1:8000/api/artists/', {
+    getPlaylistList: async function() {
+      const response = await fetch('http://127.0.0.1:8000/api/playlists/', {
         method: 'GET',
       });
       return response.json();
@@ -43,7 +42,7 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.artists {
+.playlists {
     &__heading {
         text-align: center;
         font-size: 1.4rem;
@@ -62,7 +61,7 @@ export default {
     &__card {
     }
 }
-.card-artists {
+.card-playlists {
     text-align: center;
     display: block;
     border-radius: 20px;

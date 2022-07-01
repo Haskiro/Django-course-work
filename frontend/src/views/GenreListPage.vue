@@ -3,7 +3,7 @@
     <h1 class="genres__heading">Жанры</h1>
     <ul class="genres__list">
       <li class="genres__item" v-for="genre in genres" :key="genre.id">
-        <router-link :to="{name: 'GenreDetails', params: {id: genre.id }}" class="genres__card card-genres">
+        <router-link :to="{name: 'GenreDetails', params: {id: genre.id }}" class="genres__card card-genres" tag="div">
             <img class="card-genres__img" :src="genre.cover" alt="Обложка Трека" height=250>
             <p class="card-genres__text">{{ genre.title }}</p>
         </router-link>
@@ -68,6 +68,11 @@ export default {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     padding: 10px;
     cursor: pointer;
+    transition: 0.2s ease;
+    &:hover {
+      transform: scale(1.05);
+      transition: 0.2s ease;
+    }
     &__img {
         width: 100%;
         height: 250px;

@@ -5,11 +5,11 @@
         <img class="header__logo" src="./assets/logo.svg" alt="Логотип">
         <nav class="header__nav nav">
           <ul class="nav__list">
-            <li class="nav__item"><router-link to="/">Главная</router-link></li>
-            <li class="nav__item"><router-link :to="{name: 'TrackList', params: {}}">Треки</router-link></li>
-            <li class="nav__item"><router-link :to="{name: 'ArtistList', params: {}}">Исполнители</router-link></li>
-            <li class="nav__item"><router-link :to="{name: 'GenreList', params: {}}">Жанры</router-link></li>
-            <li class="nav__item">Плейлисты</li>
+            <router-link class="nav__item" to="/" tag="li">Главная</router-link>
+            <router-link class="nav__item" :to="{name: 'TrackList', params: {}}" tag="li">Треки</router-link>
+            <router-link class="nav__item" :to="{name: 'ArtistList', params: {}}" tag="li">Исполнители</router-link>
+            <router-link class="nav__item" :to="{name: 'GenreList', params: {}}" tag="li">Жанры</router-link>
+            <router-link class="nav__item" :to="{name: 'PlaylistList', params: {}}" tag="li">Плейлисты</router-link>
           </ul>
         </nav>
         <button class="header__burger">
@@ -141,6 +141,9 @@ footer {
 		}
 		&__item {
       cursor: pointer;
+      &:hover {
+        color: purple;
+      }
 		}
 }
 .main {
