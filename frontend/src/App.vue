@@ -8,7 +8,7 @@
             <li class="nav__item"><router-link to="/">Главная</router-link></li>
             <li class="nav__item"><router-link :to="{name: 'TrackList', params: {}}">Треки</router-link></li>
             <li class="nav__item"><router-link :to="{name: 'ArtistList', params: {}}">Исполнители</router-link></li>
-            <li class="nav__item">Жанры</li>
+            <li class="nav__item"><router-link :to="{name: 'GenreList', params: {}}">Жанры</router-link></li>
             <li class="nav__item">Плейлисты</li>
           </ul>
         </nav>

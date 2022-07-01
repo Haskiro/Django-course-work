@@ -4,6 +4,8 @@ import TrackList from '../views/TrackListPage'
 import ArtistList from '../views/ArtistListPage'
 import ArtistDetails from '../views/ArtistDetails'
 import AlbumDetails from '../views/AlbumDetails'
+import GenreDetails from '../views/GenreDetails'
+import GenreList from '../views/GenreListPage'
 
 export default new VueRouter({
     mode: 'history',
@@ -36,6 +38,20 @@ export default new VueRouter({
             path: '/albums/:id',
             component: AlbumDetails,
             name: 'AlbumDetails',
+            props: true,
+
+        },
+        {
+            path: '/genres',
+            component: GenreList,
+            name: 'GenreList',
+            props: true,
+
+        },
+        {
+            path: '/genres/:id',
+            component: GenreDetails,
+            name: 'GenreDetails',
             props: true,
 
         }
