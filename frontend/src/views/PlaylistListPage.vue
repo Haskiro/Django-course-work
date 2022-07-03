@@ -1,6 +1,6 @@
 <template>
   <div id="playlists">
-    <h1 class="playlists__heading">Жанры</h1>
+    <h1 class="playlists__heading">Плейлисты</h1>
     <ul class="playlists__list">
       <li class="playlists__item" v-for="playlist in playlists" :key="playlist.id">
         <router-link :to="{name: 'PlaylistDetails', params: {id: playlist.id }}" class="playlists__card card-playlists" tag="div">
