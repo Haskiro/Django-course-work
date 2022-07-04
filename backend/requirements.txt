@@ -1,0 +1,11 @@
+asgiref @ file:///Users/p.e.kondratev/Library/Caches/pypoetry/artifacts/cf/65/18/1451154a3ac6f8e749a6f7485ce77472fc1b339d4696f7a4cb816ac781/asgiref-3.5.2-py3-none-any.whl
+Django @ file:///Users/p.e.kondratev/Library/Caches/pypoetry/artifacts/a6/d5/44/a73a4b49c4cbffbdd99a218d4139258260dc4ee675f9541492b8eea759/Django-4.0.5-py3-none-any.whl
+django-cors-headers @ file:///Users/p.e.kondratev/Library/Caches/pypoetry/artifacts/1c/b6/8a/01e7baaeb53a1449fcf88c2af9c238006af1e92922fe90b13c8c0a2579/django_cors_headers-3.13.0-py3-none-any.whl
+django-environ @ file:///Users/p.e.kondratev/Library/Caches/pypoetry/artifacts/4c/ca/f5/0eda5d1c0e27489744b61e97b6e29d30c90a6d84e35f37540f9b1eecae/django_environ-0.9.0-py2.py3-none-any.whl
+djangorestframework @ file:///Users/p.e.kondratev/Library/Caches/pypoetry/artifacts/4a/0e/8b/eb31ad1f5a8d0aef287e2de8aeed7d250803677468c74b0abd296678b8/djangorestframework-3.13.1-py3-none-any.whl
+djangorestframework-simplejwt @ file:///Users/p.e.kondratev/Library/Caches/pypoetry/artifacts/b0/9a/ca/5e8cc2954d3628a4f31d46712ee4e3804093bc0aa0573e92b55f6ed363/djangorestframework_simplejwt-5.2.0-py3-none-any.whl
+Pillow @ file:///Users/p.e.kondratev/Library/Caches/pypoetry/artifacts/db/81/2f/da5890fffaafe0a019bd3580a2ee46b8bd6f0d44f16b62b3280241471b/Pillow-9.1.1-cp39-cp39-macosx_10_10_x86_64.whl
+PyJWT @ file:///Users/p.e.kondratev/Library/Caches/pypoetry/artifacts/39/57/a7/ae4702380e15e84fee1f72eff6ef08d9557fd582df0153e98c4511ff3f/PyJWT-2.4.0-py3-none-any.whl
+pytz @ file:///Users/p.e.kondratev/Library/Caches/pypoetry/artifacts/fb/60/46/e704d81037c87ab74c6677ae79ab43dda85c31e3ae38f53c44486b593a/pytz-2022.1-py2.py3-none-any.whl
+sqlparse @ file:///Users/p.e.kondratev/Library/Caches/pypoetry/artifacts/ea/fd/ba/117a876397913faee210ef8bac93829e22ad9232662e656971383c0718/sqlparse-0.4.2-py3-none-any.whl
+gunicorn==20.1.0
