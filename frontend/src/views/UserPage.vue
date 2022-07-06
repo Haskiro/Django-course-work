@@ -43,7 +43,10 @@ export default {
   },
   created() {
     this.accessToken = localStorage.getItem('accessToken');
-    this.getUserInfo().then(data => {this.user = data});
+    this.getUserInfo().then(data => {
+      this.user = data;
+      this.user.photo = 'http://django-course-work.std-1723.ist.mospolytech.ru/' + this.user.photo;
+    });
   }
 }
 </script>
