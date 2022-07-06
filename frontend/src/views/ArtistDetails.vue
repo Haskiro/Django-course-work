@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     getArtistDetails: async function(artist_id) {
-      const response = await fetch(`http://127.0.0.1:8000/api/artists/${artist_id}`, {
+      const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/artists/${artist_id}`, {
         method: 'GET',
       });
       return response.json();

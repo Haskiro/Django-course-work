@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     getTrackList: async function() {
-      const response = await fetch('http://127.0.0.1:8000/api/tracks/', {
+      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/tracks/', {
         method: 'GET',
       });
       return response.json();

@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     getPlaylistList: async function() {
-      const response = await fetch('http://127.0.0.1:8000/api/playlists/', {
+      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/playlists/', {
         method: 'GET',
       });
       return response.json();

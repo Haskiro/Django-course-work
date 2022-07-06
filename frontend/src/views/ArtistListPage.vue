@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     getArtistList: async function() {
-      const response = await fetch('http://127.0.0.1:8000/api/artists/', {
+      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/artists/', {
         method: 'GET',
       });
       return response.json();

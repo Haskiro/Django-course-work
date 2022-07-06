@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     getAlbumDetails: async function(album_id) {
-      const response = await fetch(`http://127.0.0.1:8000/api/albums/${album_id}`, {
+      const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/albums/${album_id}`, {
         method: 'GET',
       });
       return response.json();

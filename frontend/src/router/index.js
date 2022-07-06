@@ -1,5 +1,5 @@
 import VueRouter from 'vue-router'
-import MainPage from '../views/MainPage'
+import UserPage from '../views/UserPage'
 import TrackList from '../views/TrackListPage'
 import ArtistList from '../views/ArtistListPage'
 import ArtistDetails from '../views/ArtistDetails'
@@ -15,7 +15,9 @@ export default new VueRouter({
     routes: [
         {
             path: '/',
-            component: MainPage,
+            component: UserPage,
+            name: 'UserPage',
+            props: true,
         },
         {
             path: '/tracks',

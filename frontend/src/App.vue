@@ -1,25 +1,11 @@
 <template>
   <div id="app">
-    <header class="header">
-      <div class="header__body container">
-        <img class="header__logo" src="./assets/logo.svg" alt="Логотип">
-        <nav class="header__nav nav">
-          <ul class="nav__list">
-            <router-link class="nav__item" to="/" tag="li">Главная</router-link>
-            <router-link class="nav__item" :to="{name: 'TrackList', params: {}}" tag="li">Треки</router-link>
-            <router-link class="nav__item" :to="{name: 'ArtistList', params: {}}" tag="li">Исполнители</router-link>
-            <router-link class="nav__item" :to="{name: 'GenreList', params: {}}" tag="li">Жанры</router-link>
-            <router-link class="nav__item" :to="{name: 'PlaylistList', params: {}}" tag="li">Плейлисты</router-link>
-          </ul>
-        </nav>
-        <button class="header__burger">
-          <img src="./assets/burger.svg" alt="Меню">
-        </button>
-      </div>
-    </header>
+    <header-main v-if="accessToken" @logout='logout'></header-main>
+    <!-- <header-auth v-else></header-auth> -->
     <main class="main">
       <div class="container main__body">
-        <router-view></router-view>
+        <router-view v-if="accessToken"></router-view>
+        <login-page v-else @login='login'></login-page>
       </div>
     </main>
     <footer class="footer">
@@ -34,6 +20,9 @@
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 import '../public/reset.scss'
+// import HeaderAuth from './components/HeaderAuth.vue'
+import HeaderMain from './components/HeaderMain.vue'
+import LoginPage from './components/LoginPage.vue'
 
 export default {
   name: 'App',
@@ -41,9 +30,22 @@ export default {
     return {
       tracks: {},
       artists: {},
+      accessToken: '',
+      loginData: {},
+      user: {}
     }
   },
   components: {
+    HeaderMain,
+    LoginPage
+  },
+  created() {
+    this.accessToken = localStorage.getItem('accessToken');
+    this.getUserInfo().then(data => {this.user = data})
+    if (this.user.code == "token_not_valid") {
+      this.accessToken = '';
+      localStorage.setItem('accessToken', '');
+    }
 
   },
   mounted: function() {
@@ -54,20 +56,54 @@ export default {
   },
   methods: {
     getTrackList: async function() {
-      const response = await fetch('http://127.0.0.1:8000/api/tracks/', {
+      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/tracks/', {
         method: 'GET',
       });
       return response.json();
     },
     getArtistList: async function() {
-      const response = await fetch('http://127.0.0.1:8000/api/artists/', {
+      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/artists/', {
         method: 'GET',
       });
       return response.json();
     },
     updateTrackList: function() {
       this.getTrackList().then(data => {this.tracks = data});
+    },
+    auth: async function() {
+      const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/auth/login/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.loginData)
+      });
+      return response.json();
+    },
+    getUserInfo: async function() {
+      const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/auth/me/`, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + this.accessToken
+        },
+      });
+      return response.json();
+    },
+    login: function(data) {
+      this.loginData = data;
+      this.auth().then(data => {
+        this.accessToken = data.access;
+        localStorage.setItem('accessToken', this.accessToken);
+        // if (this.accessToken != '') {
+        //   history.pushState(null, null, '/me');
+        // }
+      })
+    },
+    logout: function() {
+      this.accessToken = '';
+      localStorage.setItem('accessToken', '');
     }
+    // .then(data => {this.accessToken = data.access})
   }
 }
 </script>
@@ -94,58 +130,13 @@ footer {
   flex: 0 0 auto;
 }
 
-.header {
-		&__body {
-      display: flex;
-      justify-content: space-between;
-      position: relative;
-      padding-top: 20px;
-      padding-bottom: 20px;
-		}
-		&__logo {
-      height: 80px;
-      width: 80px;
-      align-self: center;
-		}
-		&__nav {
-
-		}
-		&__burger {
-      display: none;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      width: 70px;
-      height: 70px;
-      padding: 0;
-      &>svg {
-        cursor: pointer;
-        width: 100%;
-      }
-		}
-}
 .container {
   max-width: 1200px;
   padding-left: 15px;
   padding-right: 15px;
   margin: 0px auto;
 }
-.nav {
-  align-self: center;
-		&__list {
-      display: flex;
-      gap: 20px;
-		}
-		&__item {
-      cursor: pointer;
-      &:hover {
-        color: purple;
-      }
-		}
-}
+
 .main {
 		&__body {
 		}

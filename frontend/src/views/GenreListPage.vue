@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     getGenreList: async function() {
-      const response = await fetch('http://127.0.0.1:8000/api/genres/', {
+      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/genres/', {
         method: 'GET',
       });
       return response.json();

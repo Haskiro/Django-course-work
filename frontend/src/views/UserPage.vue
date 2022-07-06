@@ -1,0 +1,77 @@
+<template>
+  <div class="user">
+    <div class="user__header">
+      <img :src="user.photo" alt="Фотография" class="user__photo" height="250" width="250">
+      <div class="user__block">
+        <h1 class="user__title">Профиль</h1>
+        <p class="user__text">{{ user.first_name }} {{ user.last_name }}</p>
+      </div>
+    </div>
+    <div class="user__body">
+      <p class="user__text">{{ user.bio }}</p>
+    </div>
+  </div>
+</template>
+
+<script>
+
+
+export default {
+  name: 'UserPage',
+  data() {
+    return {
+      accessToken: '',
+      user: {},
+    }
+  },
+  components: {
+    
+  },
+  methods: {
+    getUserInfo: async function() {
+      const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/auth/me/`, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + this.accessToken
+        },
+      });
+      return response.json();
+    },
+  },
+  mounted: function() {
+
+  },
+  created() {
+    this.accessToken = localStorage.getItem('accessToken');
+    this.getUserInfo().then(data => {this.user = data});
+  }
+}
+</script>
+
+<style lang='scss' scoped>
+.user {
+  &__header {
+    display: flex;
+    gap: 30px;
+  }
+  &__photo {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+  }
+  &__block {
+  }
+  &__title {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    font-weight: 600;
+  }
+  &__text {
+    max-width: 85ch;
+  }
+  &__body {
+    margin-top: 50px;
+  }
+}
+</style>
