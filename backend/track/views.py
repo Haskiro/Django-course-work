@@ -6,3 +6,5 @@ from track.models import Track
 class TrackViewSet(ModelViewSet):
     queryset = Track.objects.all()
     serializer_class = TrackSerializer
+
+

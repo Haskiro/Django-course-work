@@ -1,5 +1,3 @@
-import email
-from urllib import response
 from rest_framework.exceptions import ValidationError, NotFound, AuthenticationFailed
 from rest_framework.viewsets import ModelViewSet
 from authentication.serializers import UserSerializer
@@ -8,6 +6,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
+
 
 # Create your views here.
 class UserViewSet(ModelViewSet):
@@ -43,7 +42,7 @@ class UserViewSet(ModelViewSet):
         return response
         
     @action(methods=['GET'], detail=False, permission_classes=[IsAuthenticated], url_path='me')
-    def getUset(self, request):
+    def getUser(self, request):
         user = request.user
         data = self.serializer_class(user).data
         return Response(data)
