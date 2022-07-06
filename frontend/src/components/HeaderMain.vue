@@ -2,7 +2,7 @@
   <header class="header">
       <div class="header__body container">
         <div class="header__user">
-          <p class="header__text">Admin</p>
+          <p class="header__text">{{ user.first_name }}</p>
           <button class="header__button" @click="logout">
             <router-link :to="{name: 'LoginPage', params: {}}" tag="p">Выйти</router-link>
           </button>
@@ -26,7 +26,7 @@
 <script>
 export default {
   name: 'HeaderMain',
-  props: ['accessToken'],
+  props: ['user'],
   methods: {
     logout: function() {
       this.$emit('logout', null);

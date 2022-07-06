@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header-main v-if="accessToken" @logout='logout'></header-main>
+    <header-main v-if="accessToken" @logout='logout' :user='user'></header-main>
     <!-- <header-auth v-else></header-auth> -->
     <main class="main">
       <div class="container main__body">
