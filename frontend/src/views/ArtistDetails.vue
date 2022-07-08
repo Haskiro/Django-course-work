@@ -5,7 +5,6 @@
       <div class="artist__block">
         <h1 class="artist__title">{{ artistDetails.nickname }}</h1>
         <p class="artist__text">{{ artistDetails.first_name }} {{ artistDetails.last_name }}</p>
-        <p class="artist__text">{{ artistDetails.birth_date }}</p>
       </div>
     </div>
     <div class="artist__body">
@@ -59,6 +58,9 @@ export default {
   &__header {
     display: flex;
     gap: 30px;
+    @media (max-width: 480px) {
+      flex-direction: column-reverse;
+    }
   }
   &__photo {
     width: 250px;

@@ -6,7 +6,7 @@
       <input v-model.lazy="email" class="login__input" type="email" id="email" name="email" aria-label="Почта" placeholder="Почта">
       <label for="password" style="display: none">Пароль</label>
       <input v-model.lazy="password" class="login__input" type="password" id="password" name="password" aria-label="Пароль" placeholder="Пароль">
-      <button class="login__button" type="submit" @click.prevent="login">Отправить</button>
+      <button class="login__button" type="submit" @click.prevent="login"><router-link :to="{name: 'UserPage', params: {}}" tag="span">Отправить</router-link></button>
     </form>
   </div>
 </template>

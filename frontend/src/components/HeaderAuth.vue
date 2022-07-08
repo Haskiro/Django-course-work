@@ -4,7 +4,7 @@
         <nav class="header__nav nav">
           <ul class="nav__list">
             <router-link class="nav__item" :to="{name: 'RegisterPage', params: {}}" tag="li">Регистрация</router-link>
-            <router-link class="nav__item" to="/" tag="li">Вход</router-link>
+            <router-link class="nav__item" to="/" tag="li" exact>Вход</router-link>
           </ul>
         </nav>
       </div>

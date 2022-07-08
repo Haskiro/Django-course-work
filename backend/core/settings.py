@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from pickle import TRUE
 import environ
 from datetime import timedelta
 
@@ -35,6 +36,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,9 +84,17 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
+            'libraries':{
+                'rest_framework': 'rest_framework.templatetags.rest_framework',
+                'i18n': 'django.templatetags.i18n',
+                
+            }
         },
     },
 ]
+
+USE_I18N = TRUE
 
 WSGI_APPLICATION = 'core.wsgi.application'
 

@@ -4,14 +4,13 @@
     <!-- <header-auth v-else></header-auth> -->
     <main class="main">
       <div class="container main__body">
-        <router-view v-if="accessToken"></router-view>
-        <login-page v-else @login='login'></login-page>
+        <router-view v-show="accessToken"></router-view>
+        <login-page v-if="!accessToken" @login='login'></login-page>
       </div>
     </main>
     <footer class="footer">
       <div class="footer__body container">
-        <p class="footer__text footer__text_name">Кондратьев Павел Евгеньевич</p>
-        <p class="footer__text footer__text_group">211-321</p>
+        <p class="footer__text">Кондратьев Павел Евгеньевич 211-321</p>
       </div>
     </footer>
   </div>
@@ -28,8 +27,6 @@ export default {
   name: 'App',
   data() {
     return {
-      tracks: {},
-      artists: {},
       accessToken: '',
       loginData: {},
       user: {}
@@ -48,28 +45,7 @@ export default {
     }
 
   },
-  mounted: function() {
-    this.getTrackList().then(data => {
-      this.tracks = data;
-    });
-    this.getArtistList().then(data => {this.artists = data});
-  },
   methods: {
-    getTrackList: async function() {
-      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/tracks/', {
-        method: 'GET',
-      });
-      return response.json();
-    },
-    getArtistList: async function() {
-      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/artists/', {
-        method: 'GET',
-      });
-      return response.json();
-    },
-    updateTrackList: function() {
-      this.getTrackList().then(data => {this.tracks = data});
-    },
     auth: async function() {
       const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/auth/login/`, {
         method: 'POST',
@@ -84,7 +60,8 @@ export default {
       const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/auth/me/`, {
         method: 'GET',
         headers: {
-          'Authorization': 'Bearer ' + this.accessToken
+          'Authorization': 'Bearer ' + this.accessToken,
+          'Access-Control-Request-Method': 'GET',
         },
       });
       return response.json();
@@ -94,6 +71,7 @@ export default {
       this.auth().then(data => {
         this.accessToken = data.access;
         localStorage.setItem('accessToken', this.accessToken);
+        this.getUserInfo().then(data => {this.user = data})
         // if (this.accessToken != '') {
         //   history.pushState(null, null, '/me');
         // }
@@ -143,18 +121,13 @@ footer {
 }
 .footer {
   &__body {
-    display: flex;
-    justify-content: space-between;
     padding-top: 50px;
     padding-bottom: 50px;
   }
   &__text {
     font-size: 1.4rem;
     line-height: 1.3;
-    &_name {
-    }
-    &_group {
-    }
+    text-align: center;
   }
 }
 

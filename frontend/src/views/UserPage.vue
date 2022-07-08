@@ -56,14 +56,22 @@ export default {
   &__header {
     display: flex;
     gap: 30px;
+    @media (max-width: 480px) {
+      flex-direction: column-reverse;
+    }
   }
   &__photo {
+    display: block;
     width: 250px;
     height: 250px;
     object-fit: cover;
     border-radius: 15px;
+    // @media (max-width: 480px) {
+    //   margin: 0px auto;
+    // }
   }
   &__block {
+    display: block;
   }
   &__title {
     font-size: 1.4rem;

@@ -53,6 +53,9 @@ export default {
   &__header {
     display: flex;
     gap: 30px;
+    @media (max-width: 480px) {
+      flex-direction: column-reverse;
+    }
   }
   &__photo {
     width: 250px;
