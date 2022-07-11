@@ -3,7 +3,7 @@
     <h1 class="playlists__heading">Плейлисты</h1>
     <ul class="playlists__list">
       <li class="playlists__item" v-for="playlist in playlists" :key="playlist.id">
-        <router-link :to="{name: 'PlaylistDetails', params: {id: playlist.id }}" class="playlists__card card-playlists" tag="div">
+        <router-link :to="{name: 'PlaylistDetails', params: {id: playlist.id, cors: cors }}" class="playlists__card card-playlists" tag="div">
             <img class="card-playlists__img" :src="playlist.cover" alt="Обложка Трека" height=250>
             <p class="card-playlists__text">{{ playlist.title }}</p>
         </router-link>
@@ -17,6 +17,7 @@
 
 export default {
   name: 'PlaylistListPage',
+  props: ['cors'],
   data() {
     return {
         playlists: null,
@@ -32,7 +33,7 @@ export default {
   },
   methods: {
     getPlaylistList: async function() {
-      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/playlists/', {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/playlists/`, {
         method: 'GET',
       });
       return response.json();

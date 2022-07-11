@@ -3,7 +3,7 @@
     <h1 class="genres__heading">Жанры</h1>
     <ul class="genres__list">
       <li class="genres__item" v-for="genre in genres" :key="genre.id">
-        <router-link :to="{name: 'GenreDetails', params: {id: genre.id }}" class="genres__card card-genres" tag="div">
+        <router-link :to="{name: 'GenreDetails', params: {id: genre.id, cors: cors }}" class="genres__card card-genres" tag="div">
             <img class="card-genres__img" :src="genre.cover" alt="Обложка Трека" height=250>
             <p class="card-genres__text">{{ genre.title }}</p>
         </router-link>
@@ -17,6 +17,7 @@
 
 export default {
   name: 'GenreListPage',
+  props: ['cors'],
   data() {
     return {
         genres: null,
@@ -32,7 +33,7 @@ export default {
   },
   methods: {
     getGenreList: async function() {
-      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/genres/', {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/genres/`, {
         method: 'GET',
       });
       return response.json();

@@ -18,6 +18,7 @@
 
 export default {
   name: 'UserPage',
+  props: ['cors'],
   data() {
     return {
       accessToken: '',
@@ -29,7 +30,7 @@ export default {
   },
   methods: {
     getUserInfo: async function() {
-      const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/auth/me/`, {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/auth/me/`, {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer ' + this.accessToken
@@ -45,7 +46,7 @@ export default {
     this.accessToken = localStorage.getItem('accessToken');
     this.getUserInfo().then(data => {
       this.user = data;
-      this.user.photo = 'http://django-course-work.std-1723.ist.mospolytech.ru/' + this.user.photo;
+      this.user.photo = `${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/${this.user.photo}`;
     });
   }
 }
@@ -66,9 +67,6 @@ export default {
     height: 250px;
     object-fit: cover;
     border-radius: 15px;
-    // @media (max-width: 480px) {
-    //   margin: 0px auto;
-    // }
   }
   &__block {
     display: block;

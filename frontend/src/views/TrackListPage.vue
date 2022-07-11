@@ -7,6 +7,7 @@ import TrackList from '../components/TrackList.vue'
 
 export default {
   name: 'TrackListPage',
+  props: ['cors'],
   data() {
     return {
       tracks: null,
@@ -18,7 +19,7 @@ export default {
   },
   methods: {
     getTrackList: async function() {
-      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/tracks/', {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/tracks/`, {
         method: 'GET',
       });
       return response.json();

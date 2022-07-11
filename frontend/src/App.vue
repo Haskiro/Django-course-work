@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header-main v-if="accessToken" @logout='logout' :user='user'></header-main>
+    <header-main v-if="accessToken" @logout='logout' :user='user' :cors='cors'></header-main>
     <!-- <header-auth v-else></header-auth> -->
     <main class="main">
       <div class="container main__body">
@@ -29,7 +29,8 @@ export default {
     return {
       accessToken: '',
       loginData: {},
-      user: {}
+      user: {},
+      cors: 'https://justcors.com/tl_034cbc1/'
     }
   },
   components: {
@@ -47,7 +48,7 @@ export default {
   },
   methods: {
     auth: async function() {
-      const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/auth/login/`, {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/auth/login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -57,7 +58,7 @@ export default {
       return response.json();
     },
     getUserInfo: async function() {
-      const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/auth/me/`, {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/auth/me/`, {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer ' + this.accessToken,

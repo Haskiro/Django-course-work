@@ -16,7 +16,7 @@ import TrackList from '../components/TrackList.vue';
 
 export default {
   name: 'PlaylistDetails',
-  props: ['id'],
+  props: ['id', 'cors'],
   data() {
     return {
       playlistDetails: {},
@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     getPlaylistDetails: async function(playlist_id) {
-      const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/playlists/${playlist_id}`, {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/playlists/${playlist_id}`, {
         method: 'GET',
       });
       return response.json();

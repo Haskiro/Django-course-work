@@ -3,7 +3,7 @@
     <h1 class="artists__heading">Список исполнителей</h1>
     <ul class="artists__list">
       <li class="artists__item" v-for="artist in artists" :key="artist.id">
-        <router-link :to="{name: 'ArtistDetails', params: {id: artist.id }}" class="artists__card card-artists" tag="div">
+        <router-link :to="{name: 'ArtistDetails', params: {id: artist.id, cors: cors }}" class="artists__card card-artists" tag="div">
             <img class="card-artists__img" :src="artist.photo" alt="Обложка Трека" height=250>
             <p class="card-artists__text">{{ artist.nickname }}</p>
         </router-link>
@@ -17,6 +17,7 @@
 
 export default {
   name: 'ArtistListPage',
+  props: ['cors'],
   data() {
     return {
         artistDetails: {},
@@ -33,7 +34,7 @@ export default {
   },
   methods: {
     getArtistList: async function() {
-      const response = await fetch('http://django-course-work.std-1723.ist.mospolytech.ru/api/artists/', {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/artists/`, {
         method: 'GET',
       });
       return response.json();

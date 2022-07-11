@@ -9,8 +9,8 @@
     </div>
     <div class="artist__body">
       <p class="artist__text">{{ artistDetails.bio }}</p>
-      <album-list :albums="artistDetails.albums_data" class="artist__albums"></album-list>
-      <track-list :tracks="artistDetails.tracks_data" class="artist__tracks"></track-list>
+      <album-list :albums="artistDetails.albums_data" :cors="cors" class="artist__albums"></album-list>
+      <track-list :tracks="artistDetails.tracks_data" :cors="cors" class="artist__tracks"></track-list>
     </div>
   </div>
 </template>
@@ -21,7 +21,7 @@ import AlbumList from '../components/AlbumList.vue'
 
 export default {
   name: 'ArtistDetails',
-  props: ['id'],
+  props: ['id','cors'],
   data() {
     return {
       artistDetails: {},
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     getArtistDetails: async function(artist_id) {
-      const response = await fetch(`http://django-course-work.std-1723.ist.mospolytech.ru/api/artists/${artist_id}`, {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/artists/${artist_id}`, {
         method: 'GET',
       });
       return response.json();

@@ -8,7 +8,7 @@
             <img class="card-tracks__img" :src="track.cover" alt="Обложка Трека" width="80" height="80">
             <div class="card-tracks__text">
               <p class="card-tracks__title">{{ track.title }}</p>
-              <p class="card-tracks__artists"><router-link class="card-tracks__link" v-for="artist in track.artists_data" :key="artist.id" :to="{name: 'ArtistDetails', params: {id: artist.id}}" tag="span">{{ artist.nickname }}&nbsp;&nbsp;</router-link></p>
+              <p class="card-tracks__artists"><router-link class="card-tracks__link" v-for="artist in track.artists_data" :key="artist.id" :to="{name: 'ArtistDetails', params: {id: artist.id, cors: cors}}" tag="span">{{ artist.nickname }}&nbsp;&nbsp;</router-link></p>
             </div>
           </div>
           <audio class="card-tracks__audio" controls :src="track.audio_file"></audio>
@@ -21,7 +21,7 @@
 <script>
 export default {
   name: 'TrackList',
-  props: ['tracks'],
+  props: ['tracks', 'cors'],
 }
 </script>
 

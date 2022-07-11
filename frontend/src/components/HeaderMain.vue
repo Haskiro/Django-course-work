@@ -3,17 +3,15 @@
       <div class="header__body container">
         <div class="header__user">
           <p class="header__text">{{ user.first_name }}</p>
-          <button class="header__button" @click="logout">
-            <router-link :to="{name: 'LoginPage', params: {}}" tag="p">Выйти</router-link>
-          </button>
+          <button class="header__button" @click="logout">Выйти</button>
         </div>
         <nav class="header__nav nav" v-bind:class="{ active: navIsActive }">
           <ul class="nav__list" justify="center">
-            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'UserPage', params: {}}" tag="span">Профиль</router-link></li>
-            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'TrackList', params: {}}" tag="span">Треки</router-link></li>
-            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'ArtistList', params: {}}" tag="span">Исполнители</router-link></li>
-            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'GenreList', params: {}}" tag="span">Жанры</router-link></li>
-            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'PlaylistList', params: {}}" tag="span">Плейлисты</router-link></li>
+            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'UserPage', params: {cors: cors}}" tag="span">Профиль</router-link></li>
+            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'TrackList', params: {cors: cors}}" tag="span">Треки</router-link></li>
+            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'ArtistList', params: {cors: cors}}" tag="span">Исполнители</router-link></li>
+            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'GenreList', params: {cors: cors}}" tag="span">Жанры</router-link></li>
+            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'PlaylistList', params: {cors: cors}}" tag="span">Плейлисты</router-link></li>
           </ul>
         </nav>
         <button class="header__burger" @click="showNav">
@@ -26,7 +24,7 @@
 <script>
 export default {
   name: 'HeaderMain',
-  props: ['user'],
+  props: ['user', 'cors'],
   data() {
     return {
       navIsActive: false,
