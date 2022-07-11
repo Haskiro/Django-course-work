@@ -4,8 +4,8 @@
     <!-- <header-auth v-else></header-auth> -->
     <main class="main">
       <div class="container main__body">
-        <router-view v-show="accessToken"></router-view>
         <login-page v-if="!accessToken" @login='login'></login-page>
+        <router-view v-else></router-view>
       </div>
     </main>
     <footer class="footer">
@@ -30,7 +30,7 @@ export default {
       accessToken: '',
       loginData: {},
       user: {},
-      cors: 'https://justcors.com/tl_034cbc1/'
+      cors: 'https://justcors.com/tl_034cbc1/http://'
     }
   },
   components: {
@@ -62,7 +62,6 @@ export default {
         method: 'GET',
         headers: {
           'Authorization': 'Bearer ' + this.accessToken,
-          'Access-Control-Request-Method': 'GET',
         },
       });
       return response.json();

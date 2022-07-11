@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     getPlaylistDetails: async function(playlist_id) {
-      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/playlists/${playlist_id}`, {
+      const response = await fetch(`http://course-work-backend.std-1723.ist.mospolytech.ru/api/playlists/${playlist_id}`, {
         method: 'GET',
       });
       return response.json();

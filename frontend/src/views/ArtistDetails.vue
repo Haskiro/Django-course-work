@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     getArtistDetails: async function(artist_id) {
-      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/artists/${artist_id}`, {
+      const response = await fetch(`http://course-work-backend.std-1723.ist.mospolytech.ru/api/artists/${artist_id}`, {
         method: 'GET',
       });
       return response.json();

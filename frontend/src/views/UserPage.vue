@@ -18,11 +18,12 @@
 
 export default {
   name: 'UserPage',
-  props: ['cors'],
+  props: [],
   data() {
     return {
       accessToken: '',
       user: {},
+      cors: 'https://justcors.com/tl_034cbc1/http://'
     }
   },
   components: {
@@ -33,20 +34,25 @@ export default {
       const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/auth/me/`, {
         method: 'GET',
         headers: {
-          'Authorization': 'Bearer ' + this.accessToken
+          'Authorization': 'Bearer ' + this.accessToken,
+
         },
       });
       return response.json();
     },
   },
   mounted: function() {
-
+    this.accessToken = localStorage.getItem('accessToken');
+    this.getUserInfo().then(data => {
+      this.user = data;
+      this.user.photo = `http://course-work-backend.std-1723.ist.mospolytech.ru/${this.user.photo}`;
+    });
   },
   created() {
     this.accessToken = localStorage.getItem('accessToken');
     this.getUserInfo().then(data => {
       this.user = data;
-      this.user.photo = `${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/${this.user.photo}`;
+      this.user.photo = `http://course-work-backend.std-1723.ist.mospolytech.ru/${this.user.photo}`;
     });
   }
 }

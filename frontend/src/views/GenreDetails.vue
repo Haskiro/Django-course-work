@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     getGenreDetails: async function(genre_id) {
-      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/genres/${genre_id}`, {
+      const response = await fetch(`http://course-work-backend.std-1723.ist.mospolytech.ru/api/genres/${genre_id}`, {
         method: 'GET',
       });
       return response.json();
