@@ -16,10 +16,11 @@ import TrackList from '../components/TrackList.vue';
 
 export default {
   name: 'AlbumDetails',
-  props: ['id', 'cors'],
+  props: ['id'],
   data() {
     return {
       albumDetails: {},
+      cors: '',
     }
   },
   components: {
@@ -30,13 +31,16 @@ export default {
     '$route.params.id': {
       immediate: true,
       handler() {
+        this.cors = localStorage.getItem('cors');
         this.refreshAlbumDetails(this.id);
       },
     },
   },
+  created() {
+  },
   methods: {
     getAlbumDetails: async function(album_id) {
-      const response = await fetch(`http://course-work-backend.std-1723.ist.mospolytech.ru/api/albums/${album_id}`, {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/albums/${album_id}/`, {
         method: 'GET',
       });
       return response.json();

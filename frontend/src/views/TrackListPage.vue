@@ -7,10 +7,11 @@ import TrackList from '../components/TrackList.vue'
 
 export default {
   name: 'TrackListPage',
-  props: ['cors'],
+  props: [],
   data() {
     return {
       tracks: null,
+      cors: '',
     }
   },
   components: {
@@ -29,6 +30,7 @@ export default {
 
   },
   created() {
+    this.cors = localStorage.getItem('cors');
     this.getTrackList().then(data => {this.tracks = data});
   }
 }

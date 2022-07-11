@@ -16,10 +16,11 @@ import TrackList from '../components/TrackList.vue';
 
 export default {
   name: 'GenreDetails',
-  props: ['id', 'cors'],
+  props: ['id'],
   data() {
     return {
       genreDetails: {},
+      cors: '',
     }
   },
   components: {
@@ -30,13 +31,16 @@ export default {
     '$route.params.id': {
       immediate: true,
       handler() {
+        this.cors = localStorage.getItem('cors');
         this.refreshGenreDetails(this.id);
       },
     },
   },
+  created() {
+  },
   methods: {
     getGenreDetails: async function(genre_id) {
-      const response = await fetch(`http://course-work-backend.std-1723.ist.mospolytech.ru/api/genres/${genre_id}`, {
+      const response = await fetch(`http://course-work-backend.std-1723.ist.mospolytech.ru/api/genres/${genre_id}/`, {
         method: 'GET',
       });
       return response.json();

@@ -7,11 +7,11 @@
         </div>
         <nav class="header__nav nav" v-bind:class="{ active: navIsActive }">
           <ul class="nav__list" justify="center">
-            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'UserPage', params: {cors: cors}}" tag="span">Профиль</router-link></li>
-            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'TrackList', params: {cors: cors}}" tag="span">Треки</router-link></li>
-            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'ArtistList', params: {cors: cors}}" tag="span">Исполнители</router-link></li>
-            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'GenreList', params: {cors: cors}}" tag="span">Жанры</router-link></li>
-            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'PlaylistList', params: {cors: cors}}" tag="span">Плейлисты</router-link></li>
+            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'UserPage'}" tag="span">Профиль</router-link></li>
+            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'TrackList'}" tag="span">Треки</router-link></li>
+            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'ArtistList'}" tag="span">Исполнители</router-link></li>
+            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'GenreList'}" tag="span">Жанры</router-link></li>
+            <li class="nav__item" @click="hideNav"><router-link :to="{name: 'PlaylistList'}" tag="span">Плейлисты</router-link></li>
           </ul>
         </nav>
         <button class="header__burger" @click="showNav">
@@ -24,10 +24,11 @@
 <script>
 export default {
   name: 'HeaderMain',
-  props: ['user', 'cors'],
+  props: ['user'],
   data() {
     return {
       navIsActive: false,
+      cors: '',
     }
   },
   methods: {
@@ -40,6 +41,9 @@ export default {
     hideNav: function() {
       this.navIsActive = false;
     }
+  },
+  created() {
+    this.cors = localStorage.getItem('cors');
   }
 }
 </script>

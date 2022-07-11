@@ -21,10 +21,11 @@ import AlbumList from '../components/AlbumList.vue'
 
 export default {
   name: 'ArtistDetails',
-  props: ['id','cors'],
+  props: ['id'],
   data() {
     return {
       artistDetails: {},
+      cors: '',
     }
   },
   components: {
@@ -35,13 +36,16 @@ export default {
     '$route.params.id': {
       immediate: true,
       handler() {
+        this.cors = localStorage.getItem('cors');
         this.refreshArtistDetails(this.id);
       },
     },
   },
+  created() {
+  },
   methods: {
     getArtistDetails: async function(artist_id) {
-      const response = await fetch(`http://course-work-backend.std-1723.ist.mospolytech.ru/api/artists/${artist_id}`, {
+      const response = await fetch(`${this.cors}course-work-backend.std-1723.ist.mospolytech.ru/api/artists/${artist_id}/`, {
         method: 'GET',
       });
       return response.json();

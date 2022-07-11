@@ -17,15 +17,16 @@
 
 export default {
   name: 'PlaylistListPage',
-  props: ['cors'],
   data() {
     return {
         playlists: null,
+        cors: '',
     }
   },
   mounted() {
   },
   created() {
+    this.cors = localStorage.getItem('cors');
     this.getPlaylistList().then(data => {this.playlists = data});
   },
   components: {

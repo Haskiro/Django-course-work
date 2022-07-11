@@ -39,6 +39,7 @@ export default {
   },
   created() {
     this.accessToken = localStorage.getItem('accessToken');
+    localStorage.setItem('cors', this.cors);
     this.getUserInfo().then(data => {this.user = data})
     if (this.user.code == "token_not_valid") {
       this.accessToken = '';

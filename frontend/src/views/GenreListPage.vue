@@ -17,15 +17,17 @@
 
 export default {
   name: 'GenreListPage',
-  props: ['cors'],
+  props: [],
   data() {
     return {
         genres: null,
+        cors: '',
     }
   },
   mounted() {
   },
   created() {
+    this.cors = localStorage.getItem('cors');
     this.getGenreList().then(data => {this.genres = data});
   },
   components: {

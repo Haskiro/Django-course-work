@@ -50,6 +50,7 @@ export default {
   },
   created() {
     this.accessToken = localStorage.getItem('accessToken');
+    this.cors = localStorage.getItem('cors');
     this.getUserInfo().then(data => {
       this.user = data;
       this.user.photo = `http://course-work-backend.std-1723.ist.mospolytech.ru/${this.user.photo}`;

@@ -3,7 +3,7 @@
     <h1 class="album__heading">Альбомы</h1>
     <ul class="album__list">
       <li class="album__item" v-for="album in albums" :key="album.id">
-        <router-link :to="{name: 'AlbumDetails', params: {id: album.id, cors: cors}}" class="album__card card-album" tag="div">
+        <router-link :to="{name: 'AlbumDetails', params: {id: album.id}}" class="album__card card-album" tag="div">
             <img class="card-album__img" :src="album.cover" alt="Обложка Альбома" height=250>
             <p class="card-album__text">{{ album.title }}</p>
         </router-link>
@@ -15,7 +15,15 @@
 <script>
 export default {
   name: 'AlbumList',
-  props: ['albums', 'cors'],
+  props: ['albums'],
+  data() {
+    return {
+      cors: '',
+    }
+  },
+  created() {
+    this.cors = localStorage.getItem('cors');
+  }
 }
 </script>
 

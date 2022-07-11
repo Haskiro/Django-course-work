@@ -17,16 +17,18 @@
 
 export default {
   name: 'ArtistListPage',
-  props: ['cors'],
+  props: [],
   data() {
     return {
         artistDetails: {},
         artists: null,
+        cors: '',
     }
   },
   mounted() {
   },
   created() {
+    this.cors = localStorage.getItem('cors');
     this.getArtistList().then(data => {this.artists = data});
   },
   components: {
