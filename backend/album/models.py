@@ -8,7 +8,7 @@ class Album(models.Model):
     description = models.TextField(verbose_name='Описание')
     tracks = models.ManyToManyField(verbose_name='Треки', to=Track, related_name='albums')
     cover = models.ImageField(verbose_name='Обложка', upload_to='albums/covers')
-    atrtist = models.ManyToManyField(verbose_name='Исполнители', to=Artist, related_name='albums')
+    artist = models.ManyToManyField(verbose_name='Исполнители', to=Artist, related_name='albums')
 
     def __str__(self):
         return self.title
